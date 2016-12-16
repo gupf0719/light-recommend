@@ -90,10 +90,10 @@ func CountLights(vector []string) (map[int]string, map[int]int) {
 
 	//初始化
 	lights_init := strings.Split(vector[0], ",")
-	for i := 0; i < len(lights_init); i++ {
+	for i := 0; i < len(lights_init)-1; i++ {
 		lights[i] = lights_init[i]
 	}
-	for j := 0; j < len(lights_init); j++ {
+	for j := 0; j < len(lights_init)-1; j++ {
 		counts[j] = 1
 	}
 
@@ -101,7 +101,7 @@ func CountLights(vector []string) (map[int]string, map[int]int) {
 	for i := 1; i < len(vector); i++ {
 		lights_all := strings.Split(vector[i], ",")
 
-		for j := 0; j < len(lights_all); j++ {
+		for j := 0; j < len(lights_all)-1; j++ {
 
 			for x := 0; x < len(lights); x++ {
 				if strings.EqualFold(lights[x], lights_all[j]) {

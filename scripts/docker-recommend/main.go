@@ -52,8 +52,8 @@ func main() {
 	}
 
 	//好友轻应用推荐
-	counts := 1
-	for counts > 0 {
+	counts_rec := 1
+	for counts_rec > 0 {
 		//获取全部user手机号和通讯录
 		users := models.GetUserPhonenum()
 		for _, u := range users {
@@ -76,7 +76,7 @@ func main() {
 					//验证通讯录是否注册轻应用
 					for _, v := range addressbook_array {
 						//获取该手机号的轻应用
-						exist := models.ExistUser(v)
+						exist := models.ExistUser(v) //用户是否存在
 						if exist {
 							//获取该手机号收藏的轻应用
 							lights_user, err := models.GetUserLights(v)
@@ -93,6 +93,8 @@ func main() {
 					}
 
 					lights_all = models.BubbleSort(lights_all)
+					fmt.Println("------------lighs_all------------------------------")
+					fmt.Println(lights_all)
 
 					lights, counts := models.CountLights(lights_all)
 
@@ -128,9 +130,9 @@ func main() {
 		}
 
 		fmt.Println("")
-		fmt.Println(counts)
+		fmt.Println(counts_rec)
 		fmt.Println("------------------------------------------------------------------------")
-		counts++
+		counts_rec++
 		time.Sleep(time.Second * 60) //暂停60秒
 	}
 	beego.Run()
